@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const config = {
-  baseUrl: "http://192.168.43.79:8000/",
+  baseUrl: "http://artycoders.pythonanywhere.com/",
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
@@ -28,8 +28,8 @@ const base = async (param) => {
       return Promise.resolve(res);
     })
     .catch((err) => {
-      if (err.response) {
-        return Promise.reject(err.response);
+      if (err) {
+        return Promise.reject(err);
       } else {
         return Promise.reject("TIMEOUT");
       }
@@ -39,13 +39,23 @@ const base = async (param) => {
 const request = async (method, url) => {
   return await base({ method, url })
     .then((res) => Promise.resolve(res))
-    .catch((err) => Promise.reject(err));
+    .catch(async (err) => {
+      const response = err.response;
+      let data = await response.data;
+      console.warn(data);
+      return Promise.reject(err);
+    });
 };
 
 const requestData = async (method, url, data) => {
   return await base({ method, url, data })
     .then((res) => Promise.resolve(res))
-    .catch((err) => Promise.reject(err));
+    .catch((err) => {
+      const response = err.response.data;
+      // let data = await response;
+      console.warn(response);
+      return err.response;
+    });
 };
 
 export default {

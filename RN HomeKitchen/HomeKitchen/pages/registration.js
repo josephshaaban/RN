@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { TextInput } from "react-native-paper";
 
 import axios from "../Axios";
@@ -12,24 +19,25 @@ const Registeration = ({ navigation, isChef }) => {
   const [password, setPassword] = React.useState("");
   const [password2, setPassword2] = React.useState("");
 
-  function register({ navigation }) {
+  function register() {
     const data = {
       is_chef: false,
       password: password,
       password2: password,
       phone_number: mobileNumber,
       full_name: fullname,
-      user_name: "test",
-      email: "test@example.com",
+      // user_name: "test",
+      // email: "test@example.com",
     };
 
     return axios
       .requestData("POST", "core/user/signup", data)
       .then((res) => {
-        console.log("SOUNDS GOOOOD:", res);
-        return navigation.navigate("Login");
+        Alert.alert("SOUNDS GOOOOD:", `\n${res.data.msg}`);
+        navigation.push("Login", data);
       })
       .catch((err) => {
+        Alert.alert("SOUNDS BAAAAAAAD!", `\n${err}\n Bad request.`);
         // console.error(err);
         // nevigate to sign-up for testing
         // deployment: preccess the error and then indecate user

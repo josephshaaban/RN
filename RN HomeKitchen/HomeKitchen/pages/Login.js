@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { TextInput } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -7,22 +14,27 @@ import axios from "../Axios";
 
 const image = require("../assets/background.png");
 
-const Login = ({ navigation }) => {
-  const [mobileNumber, setMobileNumber] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const Login = (props) => {
+  const { navigation, route } = props;
+  const [mobileNumber, setMobileNumber] = React.useState(
+    route?.params?.phone_number ? route?.params?.phone_number : ""
+  );
+  const [password, setPassword] = React.useState(
+    route?.params?.password ? route?.params?.password : ""
+  );
 
   function login() {
-    console.log(mobileNumber, password);
     return axios
       .requestData("POST", "core/user/login", {
         phone_number: mobileNumber,
         password: password,
       })
       .then((res) => {
-        console.log("SOUNDS GOOOOD:", res);
+        Alert.alert("huhaa", `${res.status}`);
+        Alert.alert("SOUNDS GOOOOD", `\n${res.data.msg}`);
       })
       .catch((err) => {
-        // console.error(err);
+        Alert.alert("SOUNDS BAAAAAAAD!", `\n${err}`);
         // nevigate to sign-up for testing
         // deployment: preccess the error and then indecate user
         // error field/s
@@ -30,33 +42,10 @@ const Login = ({ navigation }) => {
   }
 
   function GLogIn() {
-    console.log("Google LogIn pressed");
+    Alert.alert("Google Login", "GOOGLE LOG-IN BUTTON IS PRESSED");
   }
   function FBLogIn() {
-    console.log("FB LogIn pressed");
-    // try {
-    //   await Facebook.initializeAsync({
-    //     appId: "8253294898076858",
-    //     androidClientId: "8253294898076858",
-    //     appName: "HomeKitchen",
-    //   });
-    //   console.log("facebooooooooooooook d!!!!!!!!!!!!!!!!!!!!!!!!");
-    //   const { type, token, expirationDate, permissions, declinedPermissions } =
-    //     await Facebook.logInWithReadPermissionsAsync({
-    //       permissions: ["public_profile"],
-    //     });
-    //   if (type === "success") {
-    //     // Get the user's name using Facebook's Graph API
-    //     const response = await fetch(
-    //       `https://graph.facebook.com/me?access_token=${token}`
-    //     );
-    //     Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
-    //   } else {
-    //     // type === 'cancel'
-    //   }
-    // } catch ({ message }) {
-    //   alert(`Facebook Login Error: ${message}`);
-    // }
+    Alert.alert("FaceBook Login", "FACEBOOK LOG-IN BUTTON IS PRESSED");
   }
 
   return (
@@ -122,45 +111,23 @@ const Login = ({ navigation }) => {
         />
       </View>
       <View style={styles.socialMediaContainer}>
-        {/* <TouchableOpacity onPress={FBLogIn}> */}
         <View style={styles.socialMediaItem}>
-          <FontAwesome5 name="facebook-square" size={50} color="black" />
+          <FontAwesome5
+            name="facebook-square"
+            size={50}
+            color="black"
+            onPress={FBLogIn}
+          />
         </View>
-
-        {/* <Text style={{ textAlign: "center" }}>facebook</Text> */}
-        {/* </TouchableOpacity> */}
-        {/* <TouchableOpacity
-        onPress={GLogIn}
-        style={{
-          height: 1,
-          flex: 1,
-          alignSelf: "left",
-        }}
-      >
-        <Text> */}
         <View style={styles.socialMediaItem}>
-          <FontAwesome5 name="google" size={50} color="black" />
+          <FontAwesome5
+            name="google"
+            size={50}
+            color="black"
+            onPress={GLogIn}
+          />
         </View>
-
-        {/* </Text>
-      </TouchableOpacity> */}
       </View>
-
-      {/* <Text style={styles.text}>Login</Text>
-            <TextInput
-        style={styles.input}
-        // onChangeText={onChangeNumber}
-        // value={number}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input2}
-        // onChangeText={onChangeNumber}
-        // value={number}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      /> */}
     </View>
   );
 };
@@ -239,7 +206,6 @@ const styles = StyleSheet.create({
   },
   socialMediaItem: {
     width: "50%", // is 50% of container width
-    // padding: 10,
     alignSelf: "center",
     color: "black",
     justifyContent: "center",
