@@ -40,7 +40,7 @@ const HomeScreen = ({navigation}) => {
         <View style={{marginLeft:25}}>
           <Text>Trending Dishes</Text>
           </View>
-          <TrendingDishesCart />
+          <TrendingDishesCart navigation={navigation}/>
         </View>
            
            

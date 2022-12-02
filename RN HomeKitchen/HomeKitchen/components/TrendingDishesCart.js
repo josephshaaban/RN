@@ -1,16 +1,23 @@
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
-import { ImageBackground, SafeAreaView,StyleSheet,View ,Text, FlatList} from 'react-native'
+import { ImageBackground, SafeAreaView,StyleSheet,View ,Text, FlatList,TouchableHighlight} from 'react-native'
 import Colors from '../constants/Colors'
 import foods from '../constants/foods'
 import { PrimaryButton } from './Buttons'
 
-const TrendingDishesCart = () => {
+const TrendingDishesCart = ({navigation}) => {
   const img1 = require('../assets/intro.png')
 
-  const CartCard = ({item}) => {
+  const CartCard = ({food}) => {
     return (
-      <View style={{height:240}}>
+      <TouchableHighlight
+      underlayColor={Colors.white}
+        activeOpacity={0.9}
+        onPress={() => navigation.navigate('DetailsTrendingFood', food)}
+        >
+      <View style={{height:240}} 
+      onPress={() => navigation.navigate('DetailsTrendingFood', food)}
+      >
       <View style={styles.cartCard}>
           <ImageBackground source={img1} style={{width:'100%',height:'100%'}} resizeMode='stretch' >
              <Ionicons name={"heart-outline"} size={25} color={Colors.primaryColor} />
@@ -42,6 +49,7 @@ const TrendingDishesCart = () => {
         </View>
       </View>
       </View>
+      </TouchableHighlight>
     );
   };
   return (
@@ -50,7 +58,7 @@ const TrendingDishesCart = () => {
         showsVerticalScrollIndicator={false}
         numColumns={1}
         data={foods}
-        renderItem={({item}) => <CartCard />}
+        renderItem={({item}) => <CartCard food={item}/>}
       />
     </SafeAreaView>
   )

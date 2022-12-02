@@ -4,8 +4,7 @@ import {View , Text , StyleSheet} from 'react-native';
 // import { CartContext } from '../screens/CartContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export function Header({navigation}){
-    // const {getItemsCount} = useContext(CartContext);
-    console.log("yesssssssssss")
+
     return (
         <View style={styles.container}>
 			<View style={styles.header }>
