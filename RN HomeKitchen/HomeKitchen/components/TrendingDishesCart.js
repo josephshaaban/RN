@@ -23,10 +23,7 @@ const TrendingDishesCart = ({ navigation }) => {
         activeOpacity={0.9}
         onPress={() => navigation.navigate("DetailsTrendingFood", food)}
       >
-        <View
-          style={{ height: 240 }}
-          onPress={() => navigation.navigate("DetailsTrendingFood", food)}
-        >
+        <View style={{ height: 240 }}>
           <View style={styles.cartCard}>
             <ImageBackground
               source={img1}

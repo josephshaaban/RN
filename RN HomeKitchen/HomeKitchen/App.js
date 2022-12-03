@@ -15,6 +15,7 @@ import SecondaryHeader from "./components/SecondaryHeader";
 import DetailsOneDish from "./screens/DetailsOneDish";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./TabNavigtorFooter/Home";
+import CategoryDishesScreen from "./screens/CategoryDishesScreen";
 
 //Screen names
 
@@ -39,11 +40,22 @@ function App() {
           name={"DetailsTrendingFood"}
           component={DetailTrendingFood}
           options={({ navigation }) => ({
-            // title: settingsName,
             header: () => <SecondaryHeader navigation={navigation} />,
           })}
         />
-
+        <Stack.Screen
+          name={"CategoryDishesScreen"}
+          options={({ navigation, route }) => {
+            const { params } = route;
+            const { title } = params;
+            return {
+              title: title ? title : "Unknown Category",
+              header: () => <SecondaryHeader navigation={navigation} />,
+            };
+          }}
+        >
+          {(props) => <CategoryDishesScreen {...props} />}
+        </Stack.Screen>
         <Stack.Screen
           name={"DetailsOneDish"}
           component={DetailsOneDish}

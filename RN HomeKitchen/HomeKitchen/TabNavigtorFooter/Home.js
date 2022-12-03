@@ -19,6 +19,22 @@ const Home = () => {
     <Tab.Navigator
       initialRouteName={homeName}
       screenOptions={({ route }) => ({
+        tabBarActiveTintColor: Colors.primaryColor,
+        tabBarInactiveTintColor: "grey",
+        tabBarLabelStyle: {
+          paddingBottom: 10,
+          fontSize: 10,
+        },
+        tabBarStyle: {
+          padding: 10,
+          height: 70,
+        },
+        // tabBarStyle: [
+        //   {
+        //     display: "flex",
+        //   },
+        //   null,
+        // ],
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let rn = route.name;
@@ -37,12 +53,6 @@ const Home = () => {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
-      tabBarOptions={{
-        activeTintColor: Colors.primaryColor,
-        inactiveTintColor: "grey",
-        labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 10, height: 70 },
-      }}
     >
       <Tab.Screen
         name={homeName}

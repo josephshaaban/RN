@@ -1,43 +1,46 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  StyleSheet,
-  Text,
-  ImageBackground,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native";
+import { StyleSheet, Text, ImageBackground, FlatList } from "react-native";
 import Colors from "../constants/Colors";
+const img1 = require("../assets/intro.png");
 
-export default function ScrollBar() {
-  const img1 = require("../assets/intro.png");
+const DATA = [
+  { title: "Desert", imageSource: img1 },
+  { title: "Desert", imageSource: img1 },
+  { title: "Desert", imageSource: img1 },
+];
 
-  return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      <View>
-        <ImageBackground style={styles.img} source={img1}>
-          <Text style={styles.text}>Desert Desert</Text>
+export default function ScrollBar({ navigation }) {
+  const Item = ({ category }) => {
+    const { title, imageSource } = category;
+    return (
+      <TouchableOpacity
+        underlayColor={Colors.white}
+        activeOpacity={0.9}
+        onPress={() => navigation.navigate("CategoryDishesScreen", category)}
+      >
+        <ImageBackground style={styles.img} source={imageSource}>
+          <Text style={styles.text}>{title}</Text>
         </ImageBackground>
         {/* <Text>Hello</Text>  */}
         {/* <View style={styles.overlay} />
-        <View style={{border:'2px solid red'}}>
-        </View> */}
-      </View>
+    <View style={{border:'2px solid red'}}>
+    </View> */}
+      </TouchableOpacity>
+    );
+  };
 
-      <View>
-        <ImageBackground style={styles.img} source={img1}>
-          <Text style={styles.text}>Desert</Text>
-        </ImageBackground>
-        {/* <Text>Hello</Text>  */}
-      </View>
+  const renderItem = ({ item }) => <Item category={item} />;
 
-      <View>
-        <ImageBackground style={styles.img} source={img1}>
-          <Text style={styles.text}>Desert</Text>
-        </ImageBackground>
-        {/* <Text>Hello</Text>  */}
-      </View>
-    </ScrollView>
+  return (
+    <SafeAreaView>
+      <FlatList
+        horizontal={true}
+        data={DATA}
+        renderItem={renderItem}
+      ></FlatList>
+    </SafeAreaView>
   );
 }
 
