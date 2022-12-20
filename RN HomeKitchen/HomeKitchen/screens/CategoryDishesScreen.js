@@ -1,7 +1,6 @@
 import * as React from "react";
-import { View, ScrollView } from "react-native";
-import { Title } from "react-native-paper";
-import TrendingDishesCart from "../components/TrendingDishesCart";
+import TrendingDishVFlatList from "../components/ItemsAndFlatLists/TrendingDishVFlatList";
+import OwnScrollView from "../components/OwnScrollView";
 
 const defaultImage = require("../assets/intro.png");
 const CategoryDishesScreen = (props) => {
@@ -11,14 +10,14 @@ const CategoryDishesScreen = (props) => {
     : { title: "Unknown Category", imageSource: defaultImage };
 
   return (
-    <ScrollView>
-      <View style={{ marginTop: 15 }}>
-        <View style={{ marginLeft: 25 }}>
+    <OwnScrollView>
+      {/* <View style={{ marginTop: 15 }}>
+      <View style={{ marginLeft: 25 }}>
           <Title>{category.title}</Title>
-        </View>
-        <TrendingDishesCart navigation={navigation} />
-      </View>
-    </ScrollView>
+        </View> */}
+      <TrendingDishVFlatList navigation={navigation} />
+      {/* </View> */}
+    </OwnScrollView>
   );
 };
 

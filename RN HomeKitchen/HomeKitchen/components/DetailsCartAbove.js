@@ -1,10 +1,10 @@
-import React from "react";
-import { View, Text, ImageBackground, ScrollView, Image } from "react-native";
-import SecondaryHeader from "../components/SecondaryHeader";
-import { Avatar } from "react-native-paper";
-import Colors from "../constants/Colors";
-import { AddToCart, PreOrder } from "../components/Buttons";
 import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { ImageBackground, Text, View } from "react-native";
+import { Avatar } from "react-native-paper";
+import { PreOrder } from "../components/Buttons";
+import SecondaryHeader from "../components/SecondaryHeader";
+import RGB_HEX_Colors from "../constants/Colors";
 
 const DetailsCartAbove = ({ navigation }) => {
   const img1 = require("../assets/intro.png");
@@ -39,7 +39,9 @@ const DetailsCartAbove = ({ navigation }) => {
                   source={img1}
                   style={{ marginRight: 10 }}
                 />
-                <Text style={{ color: Colors.primaryColor }}>lorem ipsum</Text>
+                <Text style={{ color: RGB_HEX_Colors.primaryColor }}>
+                  lorem ipsum
+                </Text>
               </View>
               <View>
                 <PreOrder
@@ -65,9 +67,11 @@ const DetailsCartAbove = ({ navigation }) => {
             <Ionicons
               name="star-outline"
               size={25}
-              style={{ color: Colors.primaryColor, marginLeft: 15 }}
+              style={{ color: RGB_HEX_Colors.primaryColor, marginLeft: 15 }}
             />
-            <Text style={{ marginLeft: 10, color: Colors.primaryColor }}>
+            <Text
+              style={{ marginLeft: 10, color: RGB_HEX_Colors.primaryColor }}
+            >
               4.5
             </Text>
           </View>
@@ -75,13 +79,13 @@ const DetailsCartAbove = ({ navigation }) => {
             <Ionicons
               name="heart-outline"
               size={25}
-              style={{ color: Colors.gray }}
+              style={{ color: RGB_HEX_Colors.gray }}
             />
           </View>
         </View>
 
         <View>
-          <Text style={{ color: Colors.gray }}>
+          <Text style={{ color: RGB_HEX_Colors.gray }}>
             ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem
             ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem
             ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem ipsumlorrem
@@ -92,7 +96,7 @@ const DetailsCartAbove = ({ navigation }) => {
         <View
           style={{ flexDirection: "row", marginTop: 15, alignItems: "center" }}
         >
-          <Text style={{ color: Colors.gray, marginRight: 10 }}>
+          <Text style={{ color: RGB_HEX_Colors.gray, marginRight: 10 }}>
             Delevery Time
           </Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -113,14 +117,14 @@ const DetailsCartAbove = ({ navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ color: Colors.red }}>AED 250.00</Text>
+        <Text style={{ color: RGB_HEX_Colors.red }}>AED 250.00</Text>
         <View style={{ flexDirection: "row", gap: 15, marginRight: 15 }}>
           <View
             style={{
               width: 40,
               borderStyle: "solid",
               borderWidth: 2,
-              borderColor: Colors.gray,
+              borderColor: RGB_HEX_Colors.gray,
               borderRadius: 2,
             }}
           >
@@ -134,7 +138,7 @@ const DetailsCartAbove = ({ navigation }) => {
               width: 40,
               borderStyle: "solid",
               borderWidth: 2,
-              borderColor: Colors.gray,
+              borderColor: RGB_HEX_Colors.gray,
               textAlign: "center",
             }}
           >
@@ -145,7 +149,7 @@ const DetailsCartAbove = ({ navigation }) => {
               width: 40,
               borderStyle: "solid",
               borderWidth: 2,
-              borderColor: Colors.gray,
+              borderColor: RGB_HEX_Colors.gray,
               borderRadius: 2,
             }}
           >

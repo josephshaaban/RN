@@ -10,6 +10,7 @@ import {
   Dimensions,
   Image,
 } from "react-native";
+import OwnScrollView from "./OwnScrollView";
 
 const images = [
   "https://th.bing.com/th/id/OIP.rrIexnGdFPT4c3MHAzoFgwHaE8?pid=ImgDet&rs=1)",
@@ -36,7 +37,7 @@ export function Slider({ navigation }) {
   };
 
   return (
-    // <ScrollView
+    // <OwnScrollView
     //              onScroll={({nativeEvent})=>onChange(nativeEvent)}
     //              showsHorizontalScrollIndicator={false}
     //              pagingEnabled
@@ -54,11 +55,11 @@ export function Slider({ navigation }) {
     //                     )
     //                 }
 
-    //             </ScrollView>
+    //             </OwnScrollView>
 
     <View style={styles.container}>
       <View style={styles.wrap}>
-        <ScrollView
+        <OwnScrollView
           onScroll={({ nativeEvent }) => onChange(nativeEvent)}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
@@ -73,7 +74,7 @@ export function Slider({ navigation }) {
               source={{ uri: e }}
             />
           ))}
-        </ScrollView>
+        </OwnScrollView>
 
         <View style={styles.wrapOot}>
           {images.map((e, index) => (
